@@ -17,7 +17,7 @@ Technologies Used
 
 How to View
 
-You can explore the Quiz by visiting 
+You can explore the Quiz by visiting https://aswin-pro.github.io/Quiz/
 
 Contributing
 
