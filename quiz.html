@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+
+</head>
+<style>
+    .quiz-container {
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 30px;
+        border-radius: 8px;
+        background-color: antiquewhite;
+    }
+
+    .quiz-container h1 {
+        text-align: center;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn button {
+        width: 100px;
+        padding: 8px;
+        border: none;
+        background-color: rgb(108, 108, 255);
+        color: white;
+        margin-top: 20px;
+    }
+
+    #results {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <div class="quiz-container">
+        <h1>Quiz</h1>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. What is the capital of France?</p>
+                <input type="radio" name="question1" value="Paris"> Paris<br>
+                <input type="radio" name="question1" value="London"> London<br>
+                <input type="radio" name="question1" value="Berlin"> Berlin<br>
+            </div>
+            <div class="question">
+                <p>2. What is the largest planet in our solar system?</p>
+                <input type="radio" name="question2" value="Earth"> Earth<br>
+                <input type="radio" name="question2" value="Jupiter"> Jupiter<br>
+                <input type="radio" name="question2" value="Saturn"> Saturn<br>
+            </div>
+            <div class="question">
+                <p>3. Who wrote 'Romeo and Juliet'?</p>
+                <input type="radio" name="question3" value="William Shakespeare"> William Shakespeare<br>
+                <input type="radio" name="question3" value="Charles Dickens"> Charles Dickens<br>
+                <input type="radio" name="question3" value="Mark Twain"> Mark Twain<br>
+            </div>
+            <div class="question">
+                <p>4. What is the chemical symbol for water?</p>
+                <input type="radio" name="question4" value="O2"> O2<br>
+                <input type="radio" name="question4" value="H2O"> H2O<br>
+                <input type="radio" name="question4" value="CO2"> CO2<br>
+            </div>
+            <div class="btn">
+                <button type="button" onclick="submitQuiz()">Submit</button>
+            </div>
+        </form>
+        <div id="results">
+
+        </div>
+    </div>
+    <script>
+        function submitQuiz() {
+            // Get the form element
+            const form = document.getElementById('quiz-form');
+            // Get the results element
+            const results = document.getElementById('results');
+            // Initialize score
+            let score = 0;
+
+            // Correct answers
+            const correctAnswers = {
+                question1: 'Paris',
+                question2: 'Jupiter',
+                question3: 'William Shakespeare',
+                question4: 'H2O'
+            };
+
+            // Convert the correctAnswers object keys to an array and use forEach
+            Object.keys(correctAnswers).forEach((questionKey) => {
+                // Get the user's answer for this question
+                const userAnswer = form[questionKey].value;
+
+                // Check if the user's answer matches the correct answer
+                if (userAnswer === correctAnswers[questionKey]) {
+                    // Increment the score if the answer is correct
+                    score++;
+                }
+            });
+
+            // Display the score
+            results.innerHTML = `<h1>Result:</h1><h2>You scored ${score}</h2> `
+
+            // Disable all radio buttons
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(button => button.disabled = true);
+        }
+    </script>
+</body>
+
+</html>
